@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+    include './DataBase/Conexion.php';
+    include './php/student.php';
+    $user = new Student(1); 
+
+?>
+
+
 <head>
     <title>Aula Virtual.Uy </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -234,7 +242,7 @@
                               <div class="main-menu-header">
                                   <img class="img-80 img-radius" src="assets/Academia/gabriela_2.jpg" alt="User-Profile-Image">
                                   <div class="user-details">
-                                      <span id="more-details">Gabriela Aguilar<i class="fa fa-caret-down"></i></span>
+                                      <span id="more-details"><?php echo $user->name . " " . $user->surname; ?><i class="fa fa-caret-down"></i></span>
                                   </div>
                               </div>
                               <!--contenido del menú principal-->

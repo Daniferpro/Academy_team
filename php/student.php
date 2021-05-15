@@ -1,6 +1,5 @@
 <?php
 
-include '../DataBase/Conexion.php';
 
 class Student{
 
@@ -17,10 +16,6 @@ class Student{
     public function __construct($id){
 
         $this->id = $id;
-    }
-
-    private function getData(){
-
         $Conexion = new Conexion();
         $data = $Conexion->querySQL("SELECT * FROM `student` WHERE `id` = $this->id ");
         $data = mysqli_fetch_assoc($data);
@@ -29,9 +24,16 @@ class Student{
         $this->surname    = $data['surname'];
         $this->email      = $data['email'];
         $this->teacher_id = $data['teacher_id'];
+    }
+
+    public function getData(){
+
+        
 
 
     }
+
+    
     
 
     /**
