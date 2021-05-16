@@ -1,6 +1,5 @@
 <?php
 
-include '../DataBase/Conexion.php';
 
 class Student{
 
@@ -11,16 +10,12 @@ class Student{
     public $surname;
     public $email;
     public $celular; //falta en la bd
-    public $teacher_id;
+
     
 
     public function __construct($id){
 
         $this->id = $id;
-    }
-
-    private function getData(){
-
         $Conexion = new Conexion();
         $data = $Conexion->querySQL("SELECT * FROM `student` WHERE `id` = $this->id ");
         $data = mysqli_fetch_assoc($data);
@@ -28,10 +23,17 @@ class Student{
         $this->name       = $data['name'];
         $this->surname    = $data['surname'];
         $this->email      = $data['email'];
-        $this->teacher_id = $data['teacher_id'];
+        
+    }
+
+    public function getData(){
+
+        
 
 
     }
+
+    
     
 
     /**
@@ -135,25 +137,7 @@ class Student{
         return $this;
     }
 
-    /**
-     * Get the value of teacher_id
-     */ 
-    public function getTeacher_id()
-    {
-        return $this->teacher_id;
-    }
-
-    /**
-     * Set the value of teacher_id
-     *
-     * @return  self
-     */ 
-    public function setTeacher_id($teacher_id)
-    {
-        $this->teacher_id = $teacher_id;
-
-        return $this;
-    }
+   
     }
 
 ?>

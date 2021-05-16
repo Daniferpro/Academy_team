@@ -3,4 +3,4 @@
 $username = "root";
 $password = "";
 $serverName = "localhost";
-$bdName     = "academy";
+$dbName     = "academy";

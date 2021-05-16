@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-05-2021 a las 23:04:11
--- Versión del servidor: 5.7.31
--- Versión de PHP: 7.3.21
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-05-2021 a las 05:38:07
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,9 +28,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `course`
 --
 
-DROP TABLE IF EXISTS `course`;
-CREATE TABLE IF NOT EXISTS `course` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `course` (
+  `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL,
   `units` int(11) NOT NULL,
@@ -39,10 +39,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `publish` tinyint(1) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `discipline_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discipline_id` (`discipline_id`),
-  KEY `teacher_id` (`teacher_id`)
+  `teacher_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -51,14 +48,11 @@ CREATE TABLE IF NOT EXISTS `course` (
 -- Estructura de tabla para la tabla `discipline`
 --
 
-DROP TABLE IF EXISTS `discipline`;
-CREATE TABLE IF NOT EXISTS `discipline` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `discipline` (
+  `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL,
-  `education_level_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `education_level_id` (`education_level_id`)
+  `education_level_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -67,12 +61,10 @@ CREATE TABLE IF NOT EXISTS `discipline` (
 -- Estructura de tabla para la tabla `education_level`
 --
 
-DROP TABLE IF EXISTS `education_level`;
-CREATE TABLE IF NOT EXISTS `education_level` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `education_level` (
+  `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
-  `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -81,18 +73,12 @@ CREATE TABLE IF NOT EXISTS `education_level` (
 -- Estructura de tabla para la tabla `file`
 --
 
-DROP TABLE IF EXISTS `file`;
-CREATE TABLE IF NOT EXISTS `file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `file` (
+  `id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `path` varchar(150) COLLATE latin1_spanish_ci NOT NULL,
-  `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `course_id_2` (`course_id`),
-  UNIQUE KEY `unit_id_2` (`unit_id`),
-  KEY `course_id` (`course_id`),
-  KEY `unit_id` (`unit_id`)
+  `description` varchar(120) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -101,16 +87,12 @@ CREATE TABLE IF NOT EXISTS `file` (
 -- Estructura de tabla para la tabla `inscription`
 --
 
-DROP TABLE IF EXISTS `inscription`;
-CREATE TABLE IF NOT EXISTS `inscription` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inscription` (
+  `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `student_id` int(11) NOT NULL,
   `courde_id` int(11) NOT NULL,
-  `pay` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`),
-  KEY `courde_id` (`courde_id`)
+  `pay` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -119,9 +101,8 @@ CREATE TABLE IF NOT EXISTS `inscription` (
 -- Estructura de tabla para la tabla `student`
 --
 
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE IF NOT EXISTS `student` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
   `name` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `surname` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `country` varchar(3) COLLATE latin1_spanish_ci NOT NULL,
@@ -129,11 +110,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   `entry` datetime NOT NULL,
   `email` varchar(120) CHARACTER SET latin1 NOT NULL,
   `pass` tinytext CHARACTER SET latin1 NOT NULL,
-  `teacher_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `teacher_id` (`teacher_id`)
+  `status` varchar(200) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `student`
+--
+
+INSERT INTO `student` (`id`, `name`, `surname`, `country`, `location`, `entry`, `email`, `pass`, `status`) VALUES
+(1, 'Daniel', 'Ferreira', 'uyu', 'tacuarembo', '2021-05-14 00:00:00', 'daniferpro3@gmail.com', 'f68a41e098cf7ecb8924645bfe335941beb068e7bebaf0bba26549c0693560df08cace69debbc59f6d2e30a328570dc331c1ec2f998a43cd0340b08065d4318a', 'active');
 
 -- --------------------------------------------------------
 
@@ -141,18 +126,15 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Estructura de tabla para la tabla `teacher`
 --
 
-DROP TABLE IF EXISTS `teacher`;
-CREATE TABLE IF NOT EXISTS `teacher` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `teacher` (
+  `id` int(11) NOT NULL,
   `name` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `surname` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `country` varchar(3) CHARACTER SET latin1 NOT NULL,
   `location` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `entry` datetime NOT NULL,
   `email` varchar(120) CHARACTER SET latin1 NOT NULL,
-  `pass` tinytext CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  `pass` tinytext CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -161,16 +143,12 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Estructura de tabla para la tabla `unit`
 --
 
-DROP TABLE IF EXISTS `unit`;
-CREATE TABLE IF NOT EXISTS `unit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `unit` (
+  `id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `title` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
-  `description` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  UNIQUE KEY `id` (`id`),
-  KEY `course_id` (`course_id`),
-  KEY `teacher_id` (`teacher_id`)
+  `description` varchar(200) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -179,20 +157,147 @@ CREATE TABLE IF NOT EXISTS `unit` (
 -- Estructura de tabla para la tabla `video_class`
 --
 
-DROP TABLE IF EXISTS `video_class`;
-CREATE TABLE IF NOT EXISTS `video_class` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `video_class` (
+  `id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `link` text COLLATE latin1_spanish_ci NOT NULL,
-  `live_class` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `course_id` (`course_id`),
-  KEY `unit_id` (`unit_id`),
-  KEY `teacher_id` (`teacher_id`)
+  `live_class` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `discipline_id` (`discipline_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
+
+--
+-- Indices de la tabla `discipline`
+--
+ALTER TABLE `discipline`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `education_level_id` (`education_level_id`);
+
+--
+-- Indices de la tabla `education_level`
+--
+ALTER TABLE `education_level`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `course_id_2` (`course_id`),
+  ADD UNIQUE KEY `unit_id_2` (`unit_id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `unit_id` (`unit_id`);
+
+--
+-- Indices de la tabla `inscription`
+--
+ALTER TABLE `inscription`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `courde_id` (`courde_id`);
+
+--
+-- Indices de la tabla `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indices de la tabla `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indices de la tabla `unit`
+--
+ALTER TABLE `unit`
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
+
+--
+-- Indices de la tabla `video_class`
+--
+ALTER TABLE `video_class`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `course`
+--
+ALTER TABLE `course`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `discipline`
+--
+ALTER TABLE `discipline`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `education_level`
+--
+ALTER TABLE `education_level`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `file`
+--
+ALTER TABLE `file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `inscription`
+--
+ALTER TABLE `inscription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `unit`
+--
+ALTER TABLE `unit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `video_class`
+--
+ALTER TABLE `video_class`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

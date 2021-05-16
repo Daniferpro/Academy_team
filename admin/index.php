@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+if(!isset($_SESSION)){
+    session_start();
+}
+    if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+        include '../DataBase/Conexion.php';
+        include '../php/student.php';
+        $userid = $_SESSION['id'];
+        $user = new Student($userid); 
+        
+    }else{
+        header("Location: ../index.php");
+    }
+
+?>
+
+
 <head>
     <title>Aula Virtual.Uy </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -161,7 +179,7 @@
                                       <div class="media">
                                           <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
                                           <div class="media-body">
-                                              <h5 class="notification-user">Carolina Herrera (Parametrizar nombre)</h5>
+                                              <h5 class="notification-user">nombre</h5>
                                               <p class="notification-msg">Realizó una venta de: Jabón tocador en linea($230)</p>
                                               <span class="notification-time">16:30hs</span>
                                           </div>
@@ -234,7 +252,7 @@
                               <div class="main-menu-header">
                                   <img class="img-80 img-radius" src="assets/Academia/gabriela_2.jpg" alt="User-Profile-Image">
                                   <div class="user-details">
-                                      <span id="more-details">Gabriela Aguilar<i class="fa fa-caret-down"></i></span>
+                                      <span id="more-details"><?php echo $user->name . " " . $user->surname; ?><i class="fa fa-caret-down"></i></span>
                                   </div>
                               </div>
                               <!--contenido del menú principal-->
