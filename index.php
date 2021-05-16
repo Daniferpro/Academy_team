@@ -2,10 +2,13 @@
 <html lang="en">
 
 <?php 
+
     include './DataBase/Conexion.php';
     include './php/student.php';
-    $user = new Student(1); 
+    $userid = $_SESSION['userid'];
+    $user = new Student($userid); 
 
+   
 ?>
 
 
@@ -169,7 +172,7 @@
                                       <div class="media">
                                           <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
                                           <div class="media-body">
-                                              <h5 class="notification-user">Carolina Herrera (Parametrizar nombre)</h5>
+                                              <h5 class="notification-user"><?php echo $nombre; ?></h5>
                                               <p class="notification-msg">Realizó una venta de: Jabón tocador en linea($230)</p>
                                               <span class="notification-time">16:30hs</span>
                                           </div>
