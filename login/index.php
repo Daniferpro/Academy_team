@@ -40,7 +40,7 @@
 
                 <form class="login100-form validate-form" method="post" action="">
                     <span class="login100-form-title">
-						Iniciar Sesión
+						Iniciar Sesión en la academia
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Ingrese un email válido: ejemplo@ejemplo.com">
