@@ -35,7 +35,7 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="images/logo2.png" alt="IMG">
+                    <img src="images/logo2.png" alt="Logo Academy">
                 </div>
 
                 <form class="login100-form validate-form" method="post" action="">
@@ -43,7 +43,7 @@
 						Iniciar Sesión
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <div class="wrap-input100 validate-input" data-validate="Ingrese un email válido: ejemplo@ejemplo.com">
                         <input class="input100" type="email" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -51,8 +51,8 @@
 						</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                    <div class="wrap-input100 validate-input" data-validate="Introduzca la Contraseña">
+                        <input class="input100" type="password" name="password" placeholder="Contraseña">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="text-center p-t-12">
                         <span class="txt1">
-							Perdió
+							Olvidó
 						</span>
                         <a class="txt2" href="#">
 							su Password?

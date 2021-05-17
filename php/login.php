@@ -1,6 +1,7 @@
 <?php
 
 //recibimos las variables mediante POST
+// comprobamos si existen las variabes email y password
 
 if(isset($_POST['email']) && isset($_POST['password'])){
 
@@ -11,6 +12,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     $password = hash("sha512", $_POST['password']); 
     $qry      = "SELECT * FROM `student` WHERE `email` = '$email' AND `pass` = '$password' AND `status` = 'active' ";
     $result = $Con->querySQL($qry);
+    // realizamos la consulta a la bd y si el resultado es mayor a 0 continuamos con la session 
     if($result->num_rows>0){
 
         session_start();
@@ -22,7 +24,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
         $_SESSION['user'] = "student";  
         header("Location: ../admin/");     
    }else{
-
+    // si el email o la pass no existen en la bd o no son corretas mostramos el mensaje en pantalla
     $mensaje = "Usuario o Contraseña incorrectos";
    }
 
