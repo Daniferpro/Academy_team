@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-        include '../php/login.php';
+        include '../php/register.php';
 ?>
 <head>
-    <title>Login academia</title>
+    <title>Register academia</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -31,19 +31,52 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
+                <span class="login100-form-title">
+						Nuevo Registro de Usuario
+					</span>
                     <img src="images/logo2.png" alt="Logo Academy">
                 </div>
 
                 <form class="login100-form validate-form" method="post" action="">
-                    <span class="login100-form-title">
-						Iniciar Sesión en la academia
-					</span>
+                    
 
                     <div class="wrap-input100 validate-input" data-validate="Ingrese un email válido: ejemplo@ejemplo.com">
-                        <input class="input100" type="email" name="email" autocomplete="false" placeholder="Email">
+                        <input class="input100" type="email" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Ingrese su Nombre">
+                        <input class="input100" type="text" name="name" placeholder="Nombre">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Ingrese su apellido">
+                        <input class="input100" type="text" name="surname" placeholder="Apellido">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Debe seleccionar un Pais">
+                        <input class="input100" type="text" name="country" placeholder="Pais">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-globe" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Ingrese su Departamento">
+                        <input class="input100" type="text" name="location" placeholder="Departamento">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-globe" aria-hidden="true"></i>
 						</span>
                     </div>
 
@@ -54,11 +87,12 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
                     </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">
-							Login
-						</button>
+                    <div class="wrap-input100 validate-input" data-validate="Repita la Contraseña">
+                        <input class="input100" type="password" name="password2" placeholder="Repita Contraseña">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
                     </div>
                     <div class="text-center p-t-12">
                         <span class="txt1">
@@ -68,21 +102,23 @@
 						</span>
                         
                     </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+							Registrarme
+						</button>
+                    </div>
+                   
                     <div class="text-center p-t-12">
                         <span class="txt1">
-							Olvidó
+							Ya Tienes una cuenta?
 						</span>
-                        <a class="txt2" href="#">
-							su Password?
+                        <a class="txt2" href="./index.php">
+							Inicia Sesión
 						</a>
                     </div>
 
-                    <div class="text-center p-t-136">
-                        <a class="txt2" href="register.php">
-							Crear una Nueva Cuenta
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
+                    
                 </form>
             </div>
         </div>
