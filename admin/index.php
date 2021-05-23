@@ -9,14 +9,22 @@ if(!isset($_SESSION)){
 
         include '../DataBase/Conexion.php';
         include '../php/student.php';
+        include '../php/teacher.php';
         $userid = $_SESSION['id'];
         $user = new Student($userid); 
+        $user2 = new Teacher($userid);
         
     }else{
         header("Location: ../index.php");
     }
+    
+   
+    
 
 ?>
+
+
+
 
 
 <head>
@@ -211,7 +219,7 @@ if(!isset($_SESSION)){
                           <li class="user-profile header-notification">
                               <a href="#!" class="waves-effect waves-light">
                                   <img src="assets/Academia/gabriela_2.jpg" class="img-radius" alt="User-Profile-Image">
-                                  <span>Gabriela Aguilar</span>
+                                  <span><?php echo $user->name . " " . $user->surname; ?></span>
                                   <i class="ti-angle-down"></i>
                               </a>
                               <ul class="show-notification profile-notification">
@@ -232,8 +240,16 @@ if(!isset($_SESSION)){
                                   </li>
                         
                                   <li class="waves-effect waves-light">
-                                      <a href="auth-normal-sign-in.html">
-                                          <i class="ti-layout-sidebar-left"></i> Cerrar seción
+                                  <!--Destruyo la sesión cuando aprete serrar sesión -->
+                                    <?php
+                                        session_destroy();
+
+                                    ?>
+
+                                      <a href="../login/index.php">
+                            
+                                      
+                                          <i class="ti-layout-sidebar-left"></i> Cerrar sesion
                                       </a>
                                   </li>
                               </ul>
@@ -544,7 +560,7 @@ if(!isset($_SESSION)){
                                                     <div class="card-block">
                                                         <div class="row align-items-center">
                                                             <div class="col-8">
-                                                                <h4 class="text-c-green">350</h4>
+                                                                <h4 class="text-c-green"><?php $user->countRegisters(); ?></h4>
                                                                 <h6 class="text-muted m-b-0">Alumnos inscriptos</h6>
                                                             </div>
                                                             <div class="col-4 text-right">
@@ -569,7 +585,7 @@ if(!isset($_SESSION)){
                                                     <div class="card-block">
                                                         <div class="row align-items-center">
                                                             <div class="col-8">
-                                                                <h4 class="text-c-red">145</h4>
+                                                                <h4 class="text-c-red"><?php $user2->countRegisters();?></h4>
                                                                 <h6 class="text-muted m-b-0">Prosores y Profesionales</h6>
                                                             </div>
                                                             <div class="col-4 text-right">
@@ -671,9 +687,8 @@ if(!isset($_SESSION)){
                                                     </div>
                                                     <div class="card-header">
                                                         <p>
-                                                            <h6>Alumno</h6>
-                                                            <h6 style="text-align: right;">46:7</h6>
-                                                            
+                                                            <h6><?php $user->countRegisters(); ?>
+                                                            <h6 style="text-align: right;">46:7</h6> 
                                                         </p>
                                                     </div>
                                                  </div>

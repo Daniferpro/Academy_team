@@ -10,6 +10,7 @@ class Student{
     public $surname;
     public $email;
     public $celular; //falta en la bd
+    public $status;
 
     
 
@@ -23,15 +24,22 @@ class Student{
         $this->name       = $data['name'];
         $this->surname    = $data['surname'];
         $this->email      = $data['email'];
-        
-    }
+        $this->celular    = $data['contacto1'];
+        $this->status     = $data['status'];   
+    }     
 
-    public function getData(){
+public function getData(){
+}
 
-        
 
-
-    }
+public function countRegisters()
+{
+    $Conexion = new Conexion();
+    $data = $Conexion->querySQL("SELECT COUNT(*)FROM `student`");
+    $data = mysqli_fetch_assoc($data);
+    $Cantidad = $data['COUNT(*)'];
+    echo $Cantidad;
+}
 
     
     
@@ -138,6 +146,6 @@ class Student{
     }
 
    
-    }
+}
 
 ?>
