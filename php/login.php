@@ -22,12 +22,30 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 
         $_SESSION['id']   = $Userid;
         $_SESSION['user'] = "student";  
-        header("Location: ../admin/");     
+        header("Location: ../admin/"); 
+        exit();
+
+    }else{
+
+        $qry      = "SELECT * FROM `teacher` WHERE `email` = '$email' AND `pass` = '$password' AND `status` = 'active' ";
+        $result = $Con->querySQL($qry);
+        // realizamos la consulta a la bd y si el resultado es mayor a 0 continuamos con la session 
+        if($result->num_rows>0){
+
+            session_start();
+
+            $Userid = mysqli_fetch_assoc($result); 
+            $Userid = $Userid['id'];
+
+            $_SESSION['id']   = $Userid;
+            $_SESSION['user'] = "student";  
+            header("Location: ../admin/"); 
+            exit();
    }else{
     // si el email o la pass no existen en la bd o no son corretas mostramos el mensaje en pantalla
     $mensaje = "Usuario o Contraseña incorrectos";
    }
+} }
 
 
 
-}
