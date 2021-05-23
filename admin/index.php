@@ -219,7 +219,16 @@ if(!isset($_SESSION)){
                           <li class="user-profile header-notification">
                               <a href="#!" class="waves-effect waves-light">
                                   <img src="assets/Academia/gabriela_2.jpg" class="img-radius" alt="User-Profile-Image">
-                                  <span><?php echo $user->name . " " . $user->surname; ?></span>
+                                  <span>
+                                  <?php 
+                                      if($_SESSION['user'] == "teacher")
+                                      {
+                                       echo $user2->name . " " . $user2->surname;
+                                      } else{
+                                        echo $user->name . " " . $user->surname;
+                                       }
+                                       ?>            
+                                </span>
                                   <i class="ti-angle-down"></i>
                               </a>
                               <ul class="show-notification profile-notification">
@@ -268,7 +277,22 @@ if(!isset($_SESSION)){
                               <div class="main-menu-header">
                                   <img class="img-80 img-radius" src="assets/Academia/gabriela_2.jpg" alt="User-Profile-Image">
                                   <div class="user-details">
-                                      <span id="more-details"><?php echo $user->name . " " . $user->surname; ?><i class="fa fa-caret-down"></i></span>
+                                      <span id="more-details">
+                                          <?php 
+                                      if($_SESSION['user'] == "teacher")
+                                      {
+                                       echo $user2->name . " " . $user2->surname;
+                                      } else{
+                                        echo $user->name . " " . $user->surname;
+
+
+                                       }
+                                     
+                                       
+                                       
+                                       ?>
+                                       
+                                       <i class="fa fa-caret-down"></i></span>
                                   </div>
                               </div>
                               <!--contenido del menú principal-->
@@ -693,10 +717,25 @@ if(!isset($_SESSION)){
                                                     </div>
                                                  </div>
                                              </div>
-                                             <div class="col-xl-8 col-md-78">
+                                             <div class="col-xl-11 col-md-100">
                                                 <div class="card table-card">
                                                     <div class="card-header">
-                                                        <h5>Projects</h5>
+                                                        <h5>Profesores Nuevos</h5>
+                                                        <table border="1" cellspacing=1 cellpadding=2 style="font-size: 20pt">
+                                                         <tr>
+                                                            <td><font face="verdana"><b>Nombre</b></font></td>
+                                                            <td><font face="verdana"><b>Apellido</b></font></td>
+                                                            <td><font face="verdana"><b>País</b></font></td>
+                                                            <td><font face="verdana"><b>Localidad</b></font></td>
+                                                            <td><font face="verdana"><b>Email</b></font></td>
+                                                            <td><font face="verdana"><b>Teléfono</b></font></td>
+                                                            <td><font face="verdana"><b>Estado de cuenta</b></font></td>
+                                                         </tr>
+                                                         <?php
+                                                         $user2->printAllRegisters()
+                                                         ?>
+                    
+                                                        </table>
                                                     </div>
                                                  </div>
                                              </div>            

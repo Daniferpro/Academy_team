@@ -29,7 +29,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 
         $qry      = "SELECT * FROM `teacher` WHERE `email` = '$email' AND `pass` = '$password' AND `status` = 'active' ";
         $result = $Con->querySQL($qry);
-        // realizamos la consulta a la bd y si el resultado es mayor a 0 continuamos con la session 
+        // realizamos la consulta a la bd y si el resultado es mayor a 0 continuamos con la session del profesor 
         if($result->num_rows>0){
 
             session_start();
@@ -38,7 +38,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
             $Userid = $Userid['id'];
 
             $_SESSION['id']   = $Userid;
-            $_SESSION['user'] = "student";  
+            $_SESSION['user'] = "teacher";  
             header("Location: ../admin/"); 
             exit();
    }else{
