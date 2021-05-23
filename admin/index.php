@@ -9,6 +9,7 @@ if(!isset($_SESSION)){
 
         include '../DataBase/Conexion.php';
         include '../php/student.php';
+        
         $userid = $_SESSION['id'];
         $user = new Student($userid); 
         
@@ -670,11 +671,11 @@ if(!isset($_SESSION)){
                                                         <h5>Nuevos alumnos registrados</h5>
                                                     </div>
                                                     <div class="card-header">
-                                                        <p>
-                                                            <h6>Alumno</h6>
-                                                            <h6 style="text-align: right;">46:7</h6>
-                                                            
-                                                        </p>
+                                                        <?php
+
+                                                            $user->obtenerAlumnos();
+
+                                                        ?>
                                                     </div>
                                                  </div>
                                              </div>

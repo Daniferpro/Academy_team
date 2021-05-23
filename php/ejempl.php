@@ -1,7 +1,7 @@
 <?php
 
 
-class Student{
+class ejem{
 
     //atributos
 
@@ -137,31 +137,6 @@ class Student{
         return $this;
     }
 
-    public function obtenerAlumnos(){
-
-        $qry = "SELECT * FROM `student`";
-        $Conexionn = new Conexion();
-        $resultado = $Conexionn->querySQL($qry);
-
-        for ($i=0; $i < $resultado->num_rows ; $i++) { 
-            
-    
-            if($resultado->num_rows>0){
-                $row = mysqli_fetch_assoc($resultado);
-    
-                    $nombre = $row['name'];
-                    
-                    echo "<p>
-                            <h6>Alumno</h6>
-                            <h6 style='text-align: right;'>".$nombre."</h6>
-                        </p>";
-                
-            }
-            # code...
-        }
-
-        
-    }
    
     }
 
