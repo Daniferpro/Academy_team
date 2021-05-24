@@ -707,7 +707,7 @@ if(!isset($_SESSION)){
                                              <div class="col-xl-8 col-md-78">
                                                 <div class="card table-card">
                                                     <div class="card-header">
-                                                        <h5>Nuevos alumnos registrados</h5>
+                                                        <h5 style="color: darkcyan;">Nuevos alumnos registrados</h5>
                                                     </div>
                                                     <div class="card-header">
                                                         <p>
@@ -717,10 +717,10 @@ if(!isset($_SESSION)){
                                                     </div>
                                                  </div>
                                              </div>
-                                             <div class="col-xl-11 col-md-100">
+                                             <div class="col-xl-15 col-md-100">
                                                 <div class="card table-card">
                                                     <div class="card-header">
-                                                        <h5>Profesores Nuevos</h5>
+                                                        <h4 style="color: darkcyan;">Profesores Nuevos</h4>
                                                         <table border="1" cellspacing=1 cellpadding=2 style="font-size: 20pt">
                                                          <tr>
                                                             <td><font face="verdana"><b>Nombre</b></font></td>
@@ -738,7 +738,14 @@ if(!isset($_SESSION)){
                                                         </table>
                                                     </div>
                                                  </div>
-                                             </div>            
+                                             </div>
+
+                                              
+                                             <form action="upload.php" methos="POST" enctype="multipart/form.data">
+                                             <h4>Subir arhivos </h4> 
+                                             <input type ="file" name="file">
+                                             <p class="center"><input type="submit" value="Subir archivo"</p>
+                                             </form>         
                                             <!--  sale analytics end -->
     
                                             <!--Lista de profesionales(colocar en otra página)-->
